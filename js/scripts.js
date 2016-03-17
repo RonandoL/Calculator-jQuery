@@ -18,22 +18,34 @@ var divide = function(number1, number2) {
 
 // UI logic
 $(function() {
-  $('form').submit(function(event) {
+  $('form#calculator').submit(function(event) {
     event.preventDefault();
 
-    $('.thumbnail').empty();
+    $('.results').empty();
 
-    var number1 = parseInt($('.add1').val());
-    var number2 = parseInt($('.add2').val());
+    var number1 = parseInt($('#input1').val());
+    var number2 = parseInt($('#input2').val());
+    var operator = $('input:radio[name=operator]:checked').val();
     var resultAdd = add(number1, number2);
     var resultSubtract = subtract(number1, number2);
     var resultMultiply = multiply(number1, number2);
     var resultDivide = divide(number1, number2);
 
     $('.results').show();
-    $('.add').append('<h4>You entered ' + number1 + ' and ' + number2 + ', added together they equal: ' + resultAdd + '</h4>');
-    $('.subtract').append('<h4>You entered ' + number1 + ' and ' + number2 + ', subtracting the latter from the former, we get: ' + resultSubtract + '</h4>');
-    $('.multiply').append('<h4>You entered ' + number1 + ' and ' + number2 + ', multiplied together they equal: ' + resultMultiply + '</h4>');
+console.log(operator);
+    if (operator === "add") {
+      $('.results').append('<h4>You entered ' + number1 + ' and ' + number2 + ', added together they equal: ' + resultAdd + '</h4>');
+    } else if (operator === "subtract") {
+      $('.results').append('<h4>You entered ' + number1 + ' and ' + number2 + ', subtracting the latter from the former, we get: ' + resultSubtract + '</h4>');
+    } else if (operator === "multiply") {
+      $('.results').append('<h4>You entered ' + number1 + ' and ' + number2 + ', multiplied together they equal: ' + resultMultiply + '</h4>');
+    } else {
+      $('.results').append('<h4>You entered ' + number1 + ' and ' + number2 + ', dividing the latter into the former, we get: ' + resultDivide + '</h4>');
+    }
+
+
+
+
     $('.divide').append('<h4>You entered ' + number1 + ' and ' + number2 + ', dividing the latter into the former, we get: ' + resultDivide + '</h4>');
   });
 
