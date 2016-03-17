@@ -2,6 +2,14 @@
   display: none;
 }
 
+.red {
+  background-color: #ff9999;
+}
+
+.redText {
+  color: #ff0000;
+}
+
 /* start Jumbotron background image styles */
 .bg {
   /* use a position:fixed container for the background image and place it OUTSIDE of the .jumbotron. Make the bg container the same height as the .jumbotron and center the background image */

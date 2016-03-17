@@ -22,6 +22,8 @@ $(function() {
     event.preventDefault();
 
     $('.results').empty();
+    $('#input1').removeClass().nextAll().remove();
+    $('#input2').removeClass().nextAll().remove();
 
     var number1 = parseInt($('#input1').val());
     var number2 = parseInt($('#input2').val());
@@ -32,8 +34,22 @@ $(function() {
     var resultDivide = divide(number1, number2);
 
     $('.results').show();
-console.log(operator);
-    if (operator === "add") {
+
+    if (isNaN(number1) && isNaN(number2)) {
+      $('#input1').addClass('red');
+      $('#input2').addClass('red');
+      $('#input1').after('<span class="redText"> * Yo, fill this field brah!</span>');
+      $('#input2').after('<span class="redText"> * Yo, fill this field brah!</span>');
+      $('.results').hide();
+    } else if (isNaN(number1)) {
+      $('#input1').addClass('red');
+      $('#input1').after('<span class="redText"> * Yo, fill this field brah!</span>');
+      $('.results').hide();
+    } else if (isNaN(number2)) {
+      $('#input2').addClass('red');
+      $('#input2').after('<span class="redText"> * Yo, fill this field brah!</span>');
+      $('.results').hide();
+    } else if (operator === "add") {
       $('.results').append('<h4>You entered ' + number1 + ' and ' + number2 + ', added together they equal: ' + resultAdd + '</h4>');
     } else if (operator === "subtract") {
       $('.results').append('<h4>You entered ' + number1 + ' and ' + number2 + ', subtracting the latter from the former, we get: ' + resultSubtract + '</h4>');
